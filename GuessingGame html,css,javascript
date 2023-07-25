@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Number Guessing Game</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h1>Number Guessing Game</h1>
+        <p>Try to guess thenumber between 1 and 100:</p>
+        <input type="number" id="userGuess" min="1" max="100">
+        <button id="submitGuess">Submit Guess</button>
+        <p id="message"></p>
+        <script src="script.js"></script>
+    </body>
+</html>
+
+---CSS---
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+    padding: 50px;
+}
+input[type="number"] {
+    width: 50px;
+    text-align: center;
+}
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 5px 15px;
+    border: none;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #45a049;
+}
+
+---JavaScript---
+
+document.getElementById('submitGuess').addEventListener('click', function() {        
+    const randomNumber = Math.floor(Math.random() * 100) + 1;
+    const userGuess = parseInt(document.getElementById('userGuess').value);
+    let message;
+        
+    if(userGuess < 1 || userGuess > 100) {
+        message = 'Invalid input. Please enter a number between 1 and 100.';
+    } else if (userGuess === randomNumber) {
+        message = 'Congratulations! YOu guessed the correct number!';
+    } else if (userGuess < randomNumber) {
+        message = 'Your guess is too low. The correct number was ' + randomNumber +'.';
+    } else {
+        message = 'Your guess is too high. The correct number was ' + randomNumber + '.';
+    }
+    document.getElementById('message').textContent = message;
+ });
